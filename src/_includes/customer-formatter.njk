@@ -1,0 +1,55 @@
+<!-- Customer Profile Formatter Tab -->
+<div class="ui bottom attached tab segment active" data-tab="customer-profile">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">Customer Profile Input</h3>
+                <form class="ui form" id="customerForm">
+                    <div class="field">
+                        <label>Reference Number</label>
+                        <input type="text" id="referenceNumber" placeholder="Enter reference number">
+                    </div>
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter full name">
+                    </div>
+                    <div class="field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+                    </div>
+                    <div class="field">
+                        <label>Concern</label>
+                        <select class="ui dropdown" id="concern">
+                            <option value="">Select concern</option>
+                            <option value="OMT">OMT</option>
+                            <option value="NA">NA</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="ui buttons">
+                        <button class="ui blue button" type="button" onclick="formatCustomerProfile()">Convert</button>
+                        <button class="ui button" type="button" onclick="clearCustomerForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">
+                    Formatted Customer Profile
+                    <button class="ui right floated mini button" onclick="copyToClipboard('customerOutput')" id="copyCustomerBtn" style="display: none;">
+                        <i class="copy icon"></i> Copy
+                    </button>
+                </h3>
+                <div class="ui message" id="customerOutput" style="display: none; white-space: pre-wrap; font-family: monospace;"></div>
+                <div class="ui placeholder segment" id="customerPlaceholder">
+                    <div class="ui icon header">
+                        <i class="file outline icon"></i>
+                        Fill out the form and click "Convert" to see the formatted profile
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tool Webpage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="ui container" style="padding: 2rem 0;">
+        <div class="ui top attached tabular menu">
+            <a class="item active" data-tab="customer-profile">Customer Profile Formatter</a>
+            <a class="item" data-tab="requester">Requester Tool</a>
+            <a class="item" data-tab="cancellation">Cancellation/Rescheduling</a>
+        </div>
+        
+        <!-- Customer Profile Formatter Tab -->
+<div class="ui bottom attached tab segment active" data-tab="customer-profile">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">Customer Profile Input</h3>
+                <form class="ui form" id="customerForm">
+                    <div class="field">
+                        <label>Reference Number</label>
+                        <input type="text" id="referenceNumber" placeholder="Enter reference number">
+                    </div>
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter full name">
+                    </div>
+                    <div class="field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="phoneNumber" placeholder="Enter phone number">
+                    </div>
+                    <div class="field">
+                        <label>Concern</label>
+                        <select class="ui dropdown" id="concern">
+                            <option value="">Select concern</option>
+                            <option value="OMT">OMT</option>
+                            <option value="NA">NA</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="ui buttons">
+                        <button class="ui blue button" type="button" onclick="formatCustomerProfile()">Convert</button>
+                        <button class="ui button" type="button" onclick="clearCustomerForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">
+                    Formatted Customer Profile
+                    <button class="ui right floated mini button" onclick="copyToClipboard('customerOutput')" id="copyCustomerBtn" style="display: none;">
+                        <i class="copy icon"></i> Copy
+                    </button>
+                </h3>
+                <div class="ui message" id="customerOutput" style="display: none; white-space: pre-wrap; font-family: monospace;"></div>
+                <div class="ui placeholder segment" id="customerPlaceholder">
+                    <div class="ui icon header">
+                        <i class="file outline icon"></i>
+                        Fill out the form and click "Convert" to see the formatted profile
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Requester Tool Tab -->
+<div class="ui bottom attached tab segment" data-tab="requester">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">Requester Input</h3>
+                <form class="ui form" id="requesterForm">
+                    <div class="field">
+                        <label>Location</label>
+                        <textarea type="text" id="location" placeholder="Enter location"></textarea>
+                    </div>
+                    <div class="field">
+                        <label>Service</label>
+                        <textarea type="text" id="service" placeholder="Enter service"></textarea>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="isToday" onchange="toggleDatePicker()">
+                            <label>This is for today</label>
+                        </div>
+                    </div>
+                    <div class="field" id="dateTimeField">
+                        <label>Date & Time</label>
+                        <div class="ui two column stackable grid">
+                            <div class="column">
+                                <input type="date" id="requestDate">
+                            </div>
+                            <div class="column">
+                                <input type="time" id="requestTime">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui buttons">
+                        <button class="ui green button" type="button" onclick="formatRequester()">Generate</button>
+                        <button class="ui button" type="button" onclick="clearRequesterForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">
+                    Formatted Request
+                    <button class="ui right floated mini button" onclick="copyToClipboard('requesterOutput')" id="copyRequesterBtn" style="display: none;">
+                        <i class="copy icon"></i> Copy
+                    </button>
+                </h3>
+                <div class="ui message" id="requesterOutput" style="display: none; white-space: pre-wrap; font-family: monospace;"></div>
+                <div class="ui placeholder segment" id="requesterPlaceholder">
+                    <div class="ui icon header">
+                        <i class="file outline icon"></i>
+                        Fill out the form and click "Generate" to see the formatted request
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Cancellation/Rescheduling Tool Tab -->
+<div class="ui bottom attached tab segment" data-tab="cancellation">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">Cancellation/Rescheduling Calculator</h3>
+                <form class="ui form" id="cancellationForm">
+                    <div class="field">
+                        <label>Segment</label>
+                        <select class="ui dropdown" id="segment">
+                            <option value="">Select segment</option>
+                            <option value="Low Value">Low Value</option>
+                            <option value="Mid Value">Mid Value</option>
+                            <option value="High Value">High Value</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Action</label>
+                        <select class="ui dropdown" id="action" onchange="toggleActionFields()">
+                            <option value="">Select action</option>
+                            <option value="rescheduled">Rescheduled</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Reschedule Fields -->
+                    <div id="rescheduleFields" style="display: none;">
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="withinOneHour">
+                                <label>Within 1 hour</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cancellation Fields -->
+                    <div id="cancellationFields" style="display: none;">
+                        <div class="field">
+                            <label>Total Amount (₱)</label>
+                            <input type="number" id="totalAmount" placeholder="Enter total amount" step="0.01" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="ui buttons">
+                        <button class="ui orange button" type="button" onclick="calculateCancellation()">Calculate</button>
+                        <button class="ui button" type="button" onclick="clearCancellationForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">
+                    Calculation Result
+                    <button class="ui right floated mini button" onclick="copyToClipboard('cancellationOutput')" id="copyCancellationBtn" style="display: none;">
+                        <i class="copy icon"></i> Copy
+                    </button>
+                </h3>
+                <div class="ui message" id="cancellationOutput" style="display: none; white-space: pre-wrap; font-family: monospace;"></div>
+                <div class="ui placeholder segment" id="cancellationPlaceholder">
+                    <div class="ui icon header">
+                        <i class="calculator icon"></i>
+                        Fill out the form and click "Calculate" to see the fee calculation
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
+    <script src="js/customer-formatter.js"></script>
+    <script src="js/requester-tool.js"></script>
+    <script src="js/cancellation-tool.js"></script>
+    <script src="js/init.js"></script>
+</body>
+</html>

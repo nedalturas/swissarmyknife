@@ -1,0 +1,128 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.ui.container {
+    max-width: 1200px !important;
+}
+
+.ui.segment {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ui.tabular.menu {
+    border: none;
+    box-shadow: none;
+}
+
+.ui.tabular.menu .item {
+    border: none;
+    background: white;
+    margin-right: 4px;
+    border-radius: 8px 8px 0 0;
+}
+
+.ui.tabular.menu .item.active {
+    background: #ffffff;
+    border-bottom: 2px solid #2185d0;
+}
+
+.ui.bottom.attached.tab.segment {
+    border-radius: 0 8px 8px 8px;
+    margin-top: 0;
+}
+
+.ui.message {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0;
+}
+
+.ui.placeholder.segment {
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui.form .field > label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.ui.button {
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.ui.blue.button {
+    background-color: #2185d0;
+}
+
+.ui.green.button {
+    background-color: #21ba45;
+}
+
+.ui.orange.button {
+    background-color: #f2711c;
+}
+
+.ui.button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.ui.checkbox {
+    margin-bottom: 1rem;
+}
+
+#dateTimeField {
+    transition: opacity 0.3s ease;
+}
+
+#dateTimeField.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+#rescheduleFields, #cancellationFields {
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.copy-success {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.ui.two.column.grid > .column {
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .ui.container {
+        margin: 0 1rem;
+    }
+    
+    .ui.two.column.stackable.grid > .column {
+        padding: 0.5rem;
+    }
+    
+    .ui.tabular.menu .item {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}

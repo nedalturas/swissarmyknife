@@ -1,0 +1,33 @@
+---
+title: Multi-Tool Webpage
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="ui container" style="padding: 2rem 0;">
+        <div class="ui top attached tabular menu">
+            <a class="item active" data-tab="customer-profile">Customer Profile Formatter</a>
+            <a class="item" data-tab="requester">Requester Tool</a>
+            <a class="item" data-tab="cancellation">Cancellation/Rescheduling</a>
+        </div>
+        
+        {% include "customer-formatter.njk" %}
+        {% include "requester-tool.njk" %}
+        {% include "cancellation-tool.njk" %}
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
+    <script src="js/customer-formatter.js"></script>
+    <script src="js/requester-tool.js"></script>
+    <script src="js/cancellation-tool.js"></script>
+    <script src="js/init.js"></script>
+</body>
+</html>

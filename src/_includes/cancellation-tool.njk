@@ -1,0 +1,70 @@
+<!-- Cancellation/Rescheduling Tool Tab -->
+<div class="ui bottom attached tab segment" data-tab="cancellation">
+    <div class="ui two column stackable grid">
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">Cancellation/Rescheduling Calculator</h3>
+                <form class="ui form" id="cancellationForm">
+                    <div class="field">
+                        <label>Segment</label>
+                        <select class="ui dropdown" id="segment">
+                            <option value="">Select segment</option>
+                            <option value="Low Value">Low Value</option>
+                            <option value="Mid Value">Mid Value</option>
+                            <option value="High Value">High Value</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Action</label>
+                        <select class="ui dropdown" id="action" onchange="toggleActionFields()">
+                            <option value="">Select action</option>
+                            <option value="rescheduled">Rescheduled</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Reschedule Fields -->
+                    <div id="rescheduleFields" style="display: none;">
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" id="withinOneHour">
+                                <label>Within 1 hour</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cancellation Fields -->
+                    <div id="cancellationFields" style="display: none;">
+                        <div class="field">
+                            <label>Total Amount (₱)</label>
+                            <input type="number" id="totalAmount" placeholder="Enter total amount" step="0.01" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="ui buttons">
+                        <button class="ui orange button" type="button" onclick="calculateCancellation()">Calculate</button>
+                        <button class="ui button" type="button" onclick="clearCancellationForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="column">
+            <div class="ui segment">
+                <h3 class="ui header">
+                    Calculation Result
+                    <button class="ui right floated mini button" onclick="copyToClipboard('cancellationOutput')" id="copyCancellationBtn" style="display: none;">
+                        <i class="copy icon"></i> Copy
+                    </button>
+                </h3>
+                <div class="ui message" id="cancellationOutput" style="display: none; white-space: pre-wrap; font-family: monospace;"></div>
+                <div class="ui placeholder segment" id="cancellationPlaceholder">
+                    <div class="ui icon header">
+                        <i class="calculator icon"></i>
+                        Fill out the form and click "Calculate" to see the fee calculation
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
