@@ -63,24 +63,14 @@ const RequesterTool = {
             dateTime = `possible on ${formattedDate} at ${formattedTime}`;
         }
 
-        const formattedRequest = `
-        <div class="ui message">
-            <div class="header">
-                Service Request:
-            </div>
+        // Create clean formatted text without extra whitespace
+        const formattedRequest = `Service Request:
 
-            <p>
-                Location: ${location}
-            </p>
-            <br />
-            <p>
-                Service: ${service}
-            </p>
-            <br />
-            <p>
-                Date & Time: ${dateTime}
-            </p>
-        </div>`;
+Location: ${location}
+
+Service: ${service}
+
+Date & Time: ${dateTime}`;
 
         document.getElementById('requesterOutput').textContent = formattedRequest;
         document.getElementById('requesterOutput').style.display = 'block';

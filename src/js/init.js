@@ -20,7 +20,7 @@ const Utils = {
     // Copy to Clipboard Function
     async copyToClipboard(elementId) {
         const element = document.getElementById(elementId);
-        const text = element.textContent;
+        const text = element.textContent.trim(); // Trim whitespace from the text
         
         try {
             await navigator.clipboard.writeText(text);
