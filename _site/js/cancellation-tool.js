@@ -22,11 +22,13 @@ const CancellationTool = {
   },
 
   calculate() {
+    const referenceNumber = document.getElementById('cancellationReferenceNumber').value.trim();
+    const phoneNumber = document.getElementById('cancellationPhoneNumber').value.trim();
     const segment = document.getElementById('segment').value;
     const action = document.getElementById('action').value;
 
-    if (!segment || !action) {
-      Utils.showMessage('Please select both segment and action', 'error');
+    if (!referenceNumber || !phoneNumber || !segment || !action) {
+      Utils.showMessage('Please fill in all required fields', 'error');
       return;
     }
 
@@ -37,17 +39,26 @@ const CancellationTool = {
 
       if (withinOneHour) {
         result = `Rescheduling Fee:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Reference Number: ${referenceNumber}
+Phone Number: ${phoneNumber}
 Segment: ${segment}
 Action: Rescheduled (Within 1 hour)
 Fee: 30 AED (Non-compulsory)
-`;
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
       } else {
         result = `Rescheduling Fee:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+Reference Number: ${referenceNumber}
+Phone Number: ${phoneNumber}
 Segment: ${segment}
 Action: Rescheduled (More than 1 hour)
 Fee: 30 AED (Compulsory)
-`;
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
       }
     } else if (action === 'cancelled') {
       const totalAmount = parseFloat(
@@ -80,20 +91,23 @@ Fee: 30 AED (Compulsory)
       const finalFee = Math.min(cancellationFee, maxFee);
 
       result = `Cancellation Fee:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Reference Number: ${referenceNumber}
+Phone Number: ${phoneNumber}
 Segment: ${segment}
 Action: Cancelled
 Total Amount: ${totalAmount.toFixed(2)} AED
-Calculation: ${segment === 'High Value' ? '100%' : '50%'
-        } of total amount (Max ₱${maxFee})
+Calculation: ${segment === 'High Value' ? '100%' : '50%'} of total amount (Max ${maxFee} AED)
 Cancellation Fee: ${finalFee.toFixed(2)} AED
-`;
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
     }
 
     document.getElementById('cancellationOutput').textContent = result;
     document.getElementById('cancellationOutput').style.display = 'block';
     document.getElementById('cancellationPlaceholder').style.display = 'none';
-    document.getElementById('copyCancellationBtn').style.display =
-      'inline-block';
+    document.getElementById('copyCancellationBtn').style.display = 'inline-block';
   },
 
   clear() {
