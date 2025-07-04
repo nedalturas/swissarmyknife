@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Tool Webpage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -137,6 +140,14 @@
                 <h3 class="ui header">Cancellation/Rescheduling Calculator</h3>
                 <form class="ui form" id="cancellationForm">
                     <div class="field">
+                        <label>Reference Number</label>
+                        <input type="text" id="cancellationReferenceNumber" placeholder="Enter reference number">
+                    </div>
+                    <div class="field">
+                        <label>Phone Number</label>
+                        <input type="tel" id="cancellationPhoneNumber" placeholder="Enter phone number">
+                    </div>
+                    <div class="field">
                         <label>Segment</label>
                         <select class="ui dropdown" id="segment">
                             <option value="">Select segment</option>
@@ -167,7 +178,7 @@
                     <!-- Cancellation Fields -->
                     <div id="cancellationFields" style="display: none;">
                         <div class="field">
-                            <label>Total Amount (₱)</label>
+                            <label>Total Amount (AED)</label>
                             <input type="number" id="totalAmount" placeholder="Enter total amount" step="0.01" min="0">
                         </div>
                     </div>
