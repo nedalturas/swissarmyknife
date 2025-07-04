@@ -39,14 +39,14 @@ const CancellationTool = {
         result = `Rescheduling Fee:
 Segment: ${segment}
 Action: Rescheduled (Within 1 hour)
-Fee: ₱30 (Non-compulsory)
-`;f
+Fee: 30 AED (Non-compulsory)
+`;
       } else {
         result = `Rescheduling Fee:
 
 Segment: ${segment}
 Action: Rescheduled (More than 1 hour)
-Fee: ₱30 (Compulsory)
+Fee: 30 AED (Compulsory)
 `;
       }
     } else if (action === 'cancelled') {
@@ -80,17 +80,13 @@ Fee: ₱30 (Compulsory)
       const finalFee = Math.min(cancellationFee, maxFee);
 
       result = `Cancellation Fee:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 Segment: ${segment}
 Action: Cancelled
-Total Amount: ₱${totalAmount.toFixed(2)}
-Calculation: ${
-        segment === 'High Value' ? '100%' : '50%'
-      } of total amount (Max ₱${maxFee})
-Cancellation Fee: ₱${finalFee.toFixed(2)}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+Total Amount: ${totalAmount.toFixed(2)} AED
+Calculation: ${segment === 'High Value' ? '100%' : '50%'
+        } of total amount (Max ₱${maxFee})
+Cancellation Fee: ${finalFee.toFixed(2)} AED
+`;
     }
 
     document.getElementById('cancellationOutput').textContent = result;
