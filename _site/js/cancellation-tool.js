@@ -2,7 +2,7 @@
 const CancellationTool = {
   init() {
     console.log('Cancellation Tool initialized');
-  },
+      },
 
   toggleActionFields() {
     const action = document.getElementById('action').value;
@@ -39,26 +39,22 @@ const CancellationTool = {
 
       if (withinOneHour) {
         result = `Rescheduling Fee:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Reference Number: ${referenceNumber}
-Phone Number: ${phoneNumber}
-Segment: ${segment}
-Action: Rescheduled (Within 1 hour)
-Fee: 30 AED (Non-compulsory)
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+          Reference Number: ${referenceNumber}
+          Phone Number: ${phoneNumber}
+          Segment: ${segment}
+          Action: Rescheduled (Within 1 hour)
+          Fee: 30 AED (Non-compulsory)
+      `;
       } else {
         result = `Rescheduling Fee:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Reference Number: ${referenceNumber}
-Phone Number: ${phoneNumber}
-Segment: ${segment}
-Action: Rescheduled (More than 1 hour)
-Fee: 30 AED (Compulsory)
+          Reference Number: ${referenceNumber}
+          Phone Number: ${phoneNumber}
+          Segment: ${segment}
+          Action: Rescheduled (More than 1 hour)
+          Fee: 30 AED (Compulsory)
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+      `;
       }
     } else if (action === 'cancelled') {
       const totalAmount = parseFloat(
@@ -90,18 +86,18 @@ Fee: 30 AED (Compulsory)
 
       const finalFee = Math.min(cancellationFee, maxFee);
 
-      result = `Cancellation Fee:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      result = `
+      Cancellation Fee:
 
-Reference Number: ${referenceNumber}
-Phone Number: ${phoneNumber}
-Segment: ${segment}
-Action: Cancelled
-Total Amount: ${totalAmount.toFixed(2)} AED
-Calculation: ${segment === 'High Value' ? '100%' : '50%'} of total amount (Max ${maxFee} AED)
-Cancellation Fee: ${finalFee.toFixed(2)} AED
+      Reference Number: ${referenceNumber}
+      Phone Number: ${phoneNumber}
+      Segment: ${segment}
+      Action: Cancelled
+      Total Amount: ${totalAmount.toFixed(2)} AED
+      Calculation: ${segment === 'High Value' ? '100%' : '50%'} of total amount (Max ${maxFee} AED)
+      Cancellation Fee: ${finalFee.toFixed(2)} AED
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+      `;
     }
 
     document.getElementById('cancellationOutput').textContent = result;

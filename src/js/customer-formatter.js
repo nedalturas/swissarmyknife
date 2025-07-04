@@ -1,10 +1,8 @@
 // Customer Profile Formatter Module
 const CustomerFormatter = {
     init() {
-        // Any initialization specific to customer formatter
         console.log('Customer Formatter initialized');
     },
-
     format() {
         const referenceNumber = document.getElementById('referenceNumber').value.trim();
         const fullName = document.getElementById('fullName').value.trim();
@@ -16,22 +14,17 @@ const CustomerFormatter = {
             return;
         }
         
-        const formattedProfile = `Customer Profile:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Reference Number: ${referenceNumber}
+        // Fix: Remove indentation from template literal
+        const formattedProfile = `Reference Number: ${referenceNumber}
 Full Name: ${fullName}
 Phone Number: ${phoneNumber}
-Concern: ${concern}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+Concern: ${concern}`;
         
         document.getElementById('customerOutput').textContent = formattedProfile;
         document.getElementById('customerOutput').style.display = 'block';
         document.getElementById('customerPlaceholder').style.display = 'none';
         document.getElementById('copyCustomerBtn').style.display = 'inline-block';
     },
-
     clear() {
         document.getElementById('customerForm').reset();
         $('#concern').dropdown('clear');

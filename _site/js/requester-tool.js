@@ -1,3 +1,12 @@
+
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    const text = element.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        Utils.showMessage('Copied to clipboard!', 'success');
+    });
+}
+
 // Requester Tool Module
 const RequesterTool = {
     init() {
@@ -10,7 +19,7 @@ const RequesterTool = {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('requestDate').value = today;
 
-        // Initially hide date/time picker if today is checked
+        // Initially setup date/time picker state
         this.toggleDatePicker();
 
         console.log('Requester Tool initialized');
@@ -44,6 +53,7 @@ const RequesterTool = {
                 return;
             }
 
+            // Create date object properly
             const dateObj = new Date(date);
             const formattedDate = dateObj.toLocaleDateString('en-US', {
                 weekday: 'long',
@@ -52,8 +62,11 @@ const RequesterTool = {
                 day: 'numeric'
             });
 
-            // Convert 24-hour time to 12-hour format
-            const timeObj = new Date(`1970-01-01T${time}:00`);
+            // Convert 24-hour time to 12-hour format properly
+            const [hours, minutes] = time.split(':');
+            const timeObj = new Date();
+            timeObj.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+            
             const formattedTime = timeObj.toLocaleTimeString('en-US', {
                 hour: '2-digit',
                 minute: '2-digit',
@@ -63,7 +76,7 @@ const RequesterTool = {
             dateTime = `possible on ${formattedDate} at ${formattedTime}`;
         }
 
-        // Create clean formatted text without extra whitespace
+        // Create clean formatted text
         const formattedRequest = `Service Request:
 
 Location: ${location}
@@ -80,12 +93,15 @@ Date & Time: ${dateTime}`;
 
     clear() {
         document.getElementById('requesterForm').reset();
+        
+        // Reset to current time and date
         const now = new Date();
         const timeString = now.toTimeString().slice(0, 5);
         document.getElementById('requestTime').value = timeString;
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('requestDate').value = today;
 
+        // Hide output and show placeholder
         document.getElementById('requesterOutput').style.display = 'none';
         document.getElementById('requesterPlaceholder').style.display = 'block';
         document.getElementById('copyRequesterBtn').style.display = 'none';
@@ -108,3 +124,7 @@ Date & Time: ${dateTime}`;
         }
     }
 };
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+});

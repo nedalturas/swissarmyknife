@@ -3,10 +3,6 @@ body {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-.ui.container {
-    max-width: 1200px !important;
-}
-
 .ui.segment {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }

@@ -4,7 +4,15 @@ $(document).ready(function() {
     $('.ui.dropdown').dropdown();
     $('.ui.checkbox').checkbox();
     $('.tabular.menu .item').tab();
-    
+    $('.ui.calendar').calendar({
+        type: 'date'
+    });
+    $('#time_calendar')
+    .calendar({
+        type: 'time'
+    });
+
+
     // Initialize customer formatter
     CustomerFormatter.init();
     

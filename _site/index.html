@@ -16,7 +16,7 @@
         </div>
         
         <!-- Customer Profile Formatter Tab -->
-<div class="ui bottom attached tab segment active" data-tab="customer-profile">
+<div class="ui bottom attached tab" data-tab="customer-profile">
     <div class="ui two column stackable grid">
         <div class="column">
             <div class="ui segment">
@@ -70,67 +70,81 @@
         </div>
     </div>
 </div>
-        <!-- Requester Tool Tab -->
-<div class="ui bottom attached tab segment" data-tab="requester">
-    <div class="ui two column stackable grid">
-        <div class="column">
-            <div class="ui segment">
-                <h3 class="ui header">Requester Input</h3>
-                <form class="ui form" id="requesterForm">
-                    <div class="field">
-                        <label>Location</label>
-                        <textarea type="text" row="3" id="location" placeholder="Enter location"></textarea>
-                    </div>
-                    <div class="field">
-                        <label>Service</label>
-                        <textarea type="text" row="3" id="service" placeholder="Enter service"></textarea>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" id="isToday" onchange="toggleDatePicker()">
-                            <label>This is for today</label>
-                        </div>
-                    </div>
-                    <div class="field" id="dateTimeField">
-                        <label>Date & Time</label>
-                        <div class="ui two column stackable grid">
-                            <div class="column">
-                                <input type="date" id="requestDate">
+         <div class="ui bottom attached tab" data-tab="requester">
+            <div class="ui two column stackable grid">
+                <div class="column">
+                    <div class="ui segment">
+                        <h3 class="ui header">Requester Input</h3>
+                        <form class="ui form" id="requesterForm">
+                            <div class="field">
+                                <label>Location</label>
+                                <textarea rows="3" id="location" placeholder="Enter location"></textarea>
                             </div>
-                            <div class="column">
-                                <input type="time" id="requestTime">
+                            <div class="field">
+                                <label>Service</label>
+                                <textarea rows="3" id="service" placeholder="Enter service"></textarea>
+                            </div>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" id="isToday" onchange="RequesterTool.toggleDatePicker()">
+                                    <label>This is for today</label>
+                                </div>
+                            </div>
+                            <div class="field" id="dateTimeField">
+                                <div class="ui two column stackable grid">
+                                    <div class="column">
+                                        <label>Date</label>
+                                        <div class="ui calendar" id="date_calendar">
+                                            <div class="ui input left icon">
+                                                <i class="calendar icon"></i>
+                                                <input type="text" id="requestDate" placeholder="Select date">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="column">
+                                        <label>Time</label>
+                                        <div class="ui calendar" id="time_calendar">
+                                            <div class="ui input left icon">
+                                                <i class="time icon"></i>
+                                                <input type="text" id="requestTime" placeholder="Select time">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui buttons">
+                                <button class="ui green button" type="button" onclick="RequesterTool.format()">Generate</button>
+                                <button class="ui button" type="button" onclick="RequesterTool.clear()">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui segment">
+                        <h3 class="ui header">
+                            Formatted Request
+                            <button
+                                class="ui right floated mini button"
+                                onclick="copyToClipboard('requesterOutput')"
+                                id="copyRequesterBtn"
+                                style="display: none;">
+                                <i class="copy icon"></i>
+                                Copy
+                            </button>
+                        </h3>
+                        <div class="ui message" id="requesterOutput" style="display: none; white-space: pre-wrap;"></div>
+                        <div class="ui placeholder segment" id="requesterPlaceholder">
+                            <div class="ui icon header">
+                                <i class="file outline icon"></i>
+                                Fill out the form and click "Generate" to see the formatted request
                             </div>
                         </div>
-                    </div>
-                    <div class="ui buttons">
-                        <button class="ui green button" type="button" onclick="formatRequester()">Generate</button>
-                        <button class="ui button" type="button" onclick="clearRequesterForm()">Clear</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-        <div class="column">
-            <div class="ui segment">
-                <h3 class="ui header">
-                    Formatted Request
-                    <button class="ui right floated mini button" onclick="copyToClipboard('requesterOutput')" id="copyRequesterBtn" style="display: none;">
-                        <i class="copy icon"></i> Copy
-                    </button>
-                </h3>
-                <div class="ui message" id="requesterOutput" style="display: none; white-space: pre-wrap; "></div>
-                <div class="ui placeholder segment" id="requesterPlaceholder">
-                    <div class="ui icon header">
-                        <i class="file outline icon"></i>
-                        Fill out the form and click "Generate" to see the formatted request
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
         <!-- Cancellation/Rescheduling Tool Tab -->
-<div class="ui bottom attached tab segment" data-tab="cancellation">
+<div class="ui bottom attached tab" data-tab="cancellation">
     <div class="ui two column stackable grid">
         <div class="column">
             <div class="ui segment">
